@@ -1,6 +1,5 @@
 import React from 'react'
-import { useEffect } from 'react'
-import { useState } from 'react'
+import { useState} from 'react'
 
 
 const ScoreKeeper = () => {
@@ -22,37 +21,30 @@ const ScoreKeeper = () => {
     setColorTwo('')
   }
 
-  const playerOneHandler = (e) => {
-    if (!isGameOver) {
-      if (score !== winningScore) {
-        setScore(score + 1)
-      } else {
-        setGameOver(true)
-      }
-    }
-  }
 
-  const playerTwoHandler = () => {
-    if (!isGameOver) {
-      if (scoreTwo !== winningScore) {
-        setScoreTwo(scoreTwo + 1)
-      } else {
-        setGameOver(true)
-      }
-    }
+const playerOneHandler =  () => {
+  if(isGameOver) return;
+  const newScore = score + 1;
+  if(newScore === winningScore){
+    setGameOver(true)
+    setColorOne('green')
+    setColorTwo('red')
   }
-  useEffect(() => {
-      if(isGameOver)
-      if(score === winningScore) {
-        setColorOne('green')
-        setColorTwo('red')
-      } else {
-        if (scoreTwo === winningScore) {
-          setColorTwo('green')
-          setColorOne('red')
-        }
-      }
-  }, [score, scoreTwo, winningScore, isGameOver])
+  setScore(newScore)
+}
+
+
+
+const playerTwoHandler =  () => {
+ if(isGameOver) return;
+ const newScore = scoreTwo + 1;
+ if(newScore === winningScore){
+   setGameOver(true)
+   setColorTwo('green')
+   setColorOne('red')
+ }
+ setScoreTwo(newScore)
+  } 
 
   const resetHandler = () => {
     setGameOver(false)
@@ -106,3 +98,61 @@ export default ScoreKeeper;
 
 
 
+// const playerOneHandler = (e) => {
+//   if (!isGameOver) {
+//     if (score !== winningScore) {
+//       setScore(score + 1)
+//     } else if(setGameOver && score === winningScore){
+//       setColorOne('green')
+//       setColorTwo('red')
+//       setGameOver(true)
+//     }
+//   }
+// }
+
+// const playerTwoHandler = () => {
+// if (!isGameOver) {
+//   if (scoreTwo !== winningScore) {
+//     setScoreTwo(scoreTwo + 1)
+//   } else if(setGameOver && scoreTwo === winningScore){
+//       setColorTwo('green')
+//       setColorOne('red')
+//       setGameOver(true)
+//   }
+// } 
+// }
+
+
+// const playerOneHandler = (e) => {
+//   if (!isGameOver) {
+//     if (score !== winningScore) {
+//       setScore(score + 1)
+//     } else {
+//       setGameOver(true)
+//     }
+//   }
+// }
+
+// const playerTwoHandler = () => {
+//   if (!isGameOver) {
+//     if (scoreTwo !== winningScore) {
+//       setScoreTwo(scoreTwo + 1)
+//     } else{
+//       setGameOver(true)
+//     }
+//   } 
+// }
+
+
+ // useEffect(() => {
+  //     if(isGameOver)
+  //     if(score === winningScore) {
+  //       setColorOne('green')
+  //       setColorTwo('red')
+  //     } else {
+  //       if (scoreTwo === winningScore) {
+  //         setColorTwo('green')
+  //         setColorOne('red')
+  //       }
+  //     }
+  // }, [score, scoreTwo, winningScore, isGameOver])
